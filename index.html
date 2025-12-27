@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迅捷科技 - 石家庄专业电脑维修服务</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        :root {
+            --primary: #0a84ff;
+            --primary-dark: #0066cc;
+            --secondary: #00c8ff;
+            --dark-bg: #0f1419;
+            --darker-bg: #090d10;
+            --card-bg: #1a1f26;
+            --text: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent: #ff6b35;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .header-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .header-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(10, 132, 255, 0.3);
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(rgba(15, 20, 25, 0.9), rgba(15, 20, 25, 0.95)), 
+                        url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(10, 132, 255, 0.15) 0%, transparent 70%);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        /* 服务区域 */
+        .services {
+            padding: 100px 0;
+            background-color: var(--darker-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(10, 132, 255, 0.2);
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* 预约区域 */
+        .booking {
+            padding: 100px 0;
+            background-color: var(--dark-bg);
+        }
+        
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .booking-form-container {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .booking-info {
+            padding-right: 30px;
+        }
+        
+        .booking-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .booking-info p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            list-style: none;
+        }
+        
+        .features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .features i {
+            color: var(--primary);
+        }
+        
+        /* 腾讯问卷表单容器 */
+        .questionnaire-container {
+            width: 100%;
+            height: 600px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 底部样式 */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 70px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .booking-info {
+                padding-right: 0;
+                text-align: center;
+            }
+            
+            .features li {
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .services, .booking {
+                padding: 70px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="logo-text">迅捷科技</div>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#home">首页</a>
+                <a href="#services">服务项目</a>
+                <a href="#booking">在线预约</a>
+                <a href="#contact">联系我们</a>
+            </nav>
+            
+            <a href="#booking" class="header-btn">
+                <i class="fas fa-calendar-check"></i> 立即预约
+            </a>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 class="fade-in">专业电脑维修，让科技更高效</h1>
+            <p class="fade-in">石家庄本地<span class="highlight">10年经验</span>电脑维修团队，提供<span class="highlight">上门维修</span>、<span class="highlight">数据恢复</span>、<span class="highlight">硬件升级</span>等全方位技术服务，快速响应，价格透明。</p>
+            <a href="#booking" class="header-btn fade-in" style="font-size: 1.1rem; padding: 15px 30px;">
+                <i class="fas fa-tools"></i> 立即预约维修
+            </a>
+        </div>
+    </section>
+
+    <!-- 服务项目 -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的服务</h2>
+                <p>提供全方位的电脑维修与技术服务，解决您的各类电脑问题</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>台式机维修</h3>
+                    <p>专业诊断台式电脑硬件故障，包括主板、CPU、显卡、电源等部件检测与维修，提供硬件升级方案。</p>
+                    <div class="features">
+                        <div class="contact-info">
+                            <i class="fas fa-check-circle"></i>
+                            <span>免费检测诊断</span>
+                        </div>
+                        <div class="contact-info">
+                            <i class="fas fa-check-circle"></i>
+                            <span>原厂配件更换</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>笔记本维修</h3>
+                    <p>各类品牌笔记本专业维修，屏幕更换、键盘维修、主板芯片级维修、电池更换等全方位服务。</p>
+                    <div class="features">
+                        <div class="contact-info">
+                            <i class="fas fa-check-circle"></i>
+                            <span>品牌专修经验</span>
+                        </div>
+                        <div class="contact-info">
+                            <i class="fas fa-check-circle"></i>
+                            <span>快速维修响应</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-hdd"></i>
+                    </div>
+                    <h3>数据恢复</h3>
+                    <p>硬盘损坏、误删除、病毒攻击导致的数据丢失问题，我们提供专业的数据恢复服务，最大程度挽救您的数据。</p>
+                    <div class="features">
+                        <div class="contact-info">
+                            <i class="fas fa-check-circle"></i>
+                            <span>高达95%恢复率</span>
+                        </div>
+                        <div class="contact-info">
+                            <i class="fas fa-check-circle"></i>
+                            <span>安全保密协议</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 预约区域 -->
+    <section class="booking" id="booking">
+        <div class="container">
+            <div class="section-title">
+                <h2>在线预约维修</h2>
+                <p>填写预约表单，我们将尽快与您联系安排上门服务时间</p>
+            </div>
+            
+            <div class="booking-container">
+                <div class="booking-info fade-in">
+                    <h3>便捷预约流程</h3>
+                    <p>选择下方服务类型并填写基本信息，我们的客服将在30分钟内与您确认具体维修时间。石家庄市区<span class="highlight">2小时内上门服务</span>，郊区当日到达。</p>
+                    
+                    <ul class="features">
+                        <li><i class="fas fa-clock"></i> 营业时间：周一至周日 8:00-21:00</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 服务区域：石家庄全市及周边区县</li>
+                        <li><i class="fas fa-shield-alt"></i> 质量保证：所有维修服务提供90天质保</li>
+                        <li><i class="fas fa-dollar-sign"></i> 透明报价：维修前确认价格，无隐藏费用</li>
+                    </ul>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background-color: rgba(10, 132, 255, 0.1); border-radius: 10px;">
+                        <h4><i class="fas fa-phone-alt"></i> 紧急联系</h4>
+                        <p>如需紧急服务，请直接致电：<span class="highlight" style="font-size: 1.2rem; font-weight: bold;">0311-8567-1234</span></p>
+                    </div>
+                </div>
+                
+                <div class="booking-form-container fade-in">
+                    <h3 style="margin-bottom: 25px;">维修预约表单</h3>
+                    <p style="margin-bottom: 25px; color: var(--text-secondary);">请选择服务类型并填写您的联系信息</p>
+                    
+                    <!-- 腾讯问卷嵌入区域 -->
+                    <div class="questionnaire-container">
+                        <!-- 这里替换为您的腾讯问卷嵌入代码 -->
+                        <iframe 
+                            src="https://wj.qq.com/s2/13892611/1b1a/" 
+                            width="100%" 
+                            height="600" 
+                            frameborder="0" 
+                            allowfullscreen
+                            style="border-radius: 10px;"
+                        >
+                        </iframe>
+                    </div>
+                    
+                    <div style="margin-top: 20px; font-size: 0.9rem; color: var(--text-secondary); text-align: center;">
+                        <p><i class="fas fa-lock"></i> 您的信息将被严格保密，仅用于维修服务联系</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>迅捷科技</h4>
+                    <p>石家庄专业的电脑维修服务商，拥有10年行业经验，致力于为个人和企业提供高效可靠的技术支持服务。</p>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>石家庄市长安区中山东路123号科技大厦8层</span>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>服务项目</h4>
+                    <a href="#services">台式机维修</a>
+                    <a href="#services">笔记本维修</a>
+                    <a href="#services">数据恢复</a>
+                    <a href="#services">系统安装</a>
+                    <a href="#services">网络维护</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>联系我们</h4>
+                    <div class="contact-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>0311-8567-1234</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@xunjietech.com</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-clock"></i>
+                        <span>周一至周日 8:00-21:00</span>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <a href="#" style="display: inline-block; margin-right: 15px;"><i class="fab fa-weixin fa-lg"></i></a>
+                        <a href="#" style="display: inline-block; margin-right: 15px;"><i class="fab fa-qq fa-lg"></i></a>
+                        <a href="#" style="display: inline-block;"><i class="fab fa-weibo fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 迅捷科技电脑维修服务有限公司 版权所有 冀ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.style.opacity = "1";
+                        element.style.transform = "translateY(0)";
+                    }
+                });
+            };
+            
+            // 初始设置
+            fadeElements.forEach(element => {
+                element.style.opacity = "0";
+                element.style.transform = "translateY(30px)";
+                element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            });
+            
+            // 监听滚动
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // 初始调用一次
+            fadeInOnScroll();
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 表单提交模拟
+            const bookingBtn = document.querySelector('.header-btn');
+            bookingBtn.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#booking') {
+                    e.preventDefault();
+                    document.querySelector('#booking').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
